@@ -34,14 +34,16 @@ class Fitment extends React.Component{
                             {"scope": "timeline","units":"weeks", "estimate": 12,  "actual": 15, "rating":2	}, 
                             {"scope": "efforts","units":"manhours", "estimate": 250,  "actual": 275, "rating":3	} 
                         ],
-                        "toolchain":[
-                            {"name": "tool1", "type":"compiler","competency":3}, 
-                            {"name": "tool2", "type":"compiler","competency":2} 
+                        "softwares":[
+                            {"name": "soft1", "type":"software","competency":3,"url":"https://cdn.sketchbubble.com/pub/media/catalog/product/optimized1/6/9/69fd3f3fa4b53119324dc79e3a2813caff651389412559bfb4d639b79a0d9f39/software-icons-slide4.png"}, 
+                            {"name": "soft2", "type":"software","competency":2,"url":"https://cdn.sketchbubble.com/pub/media/catalog/product/optimized1/6/9/69fd3f3fa4b53119324dc79e3a2813caff651389412559bfb4d639b79a0d9f39/software-icons-slide4.png"},
+                            {"name": "soft3", "type":"software","competency":4,"url":"https://cdn.sketchbubble.com/pub/media/catalog/product/optimized1/6/9/69fd3f3fa4b53119324dc79e3a2813caff651389412559bfb4d639b79a0d9f39/software-icons-slide4.png"},
+                            {"name": "soft4", "type":"software","competency":1,"url":"https://cdn.sketchbubble.com/pub/media/catalog/product/optimized1/6/9/69fd3f3fa4b53119324dc79e3a2813caff651389412559bfb4d639b79a0d9f39/software-icons-slide4.png"} 
                         ],
                         "hardware":[
-                            {"name": "tool1", "type":"MCU","competency":3}, 
-                            {"name": "tool2", "type":"sensor","competency":2} 
-                        ],				
+                            {"name": "tool1", "type":"MCU","competency":3,"url":"https://cdn.sketchbubble.com/pub/media/catalog/product/optimized1/6/9/69fd3f3fa4b53119324dc79e3a2813caff651389412559bfb4d639b79a0d9f39/software-icons-slide4.png"}, 
+                            {"name": "tool2", "type":"sensor","competency":2,"url":"https://cdn.sketchbubble.com/pub/media/catalog/product/optimized1/6/9/69fd3f3fa4b53119324dc79e3a2813caff651389412559bfb4d639b79a0d9f39/software-icons-slide4.png"} 
+                        ],
                         "interfaces":[
                             {"name": "if1", "url":"link","competency":3}, 
                             {"name": "if2", "url":"link","competency":2} 
@@ -99,7 +101,6 @@ class Fitment extends React.Component{
 
 
    componentDidMount(){
-       console.log("sss");
        console.log(this.state.cert);
 
        var compl = this.state.cert.certificates[0].complexity;
@@ -177,7 +178,7 @@ class Fitment extends React.Component{
 
     <div className="row ">
 
-        <div className="col-md-4">
+        <div className="col-md-5">
 
             <div className="form-group d-md-flex justify-content-end">
 
@@ -194,14 +195,14 @@ class Fitment extends React.Component{
             </div>
 
             <div className="projectImg">
-
+                <img src={require('../assets/images/certImage.jpg').default} width="100%"/>
             </div>
 
         </div>
 
-        <div className="col-md-8">
+        <div className="col-md-7">
 
-            <h5 className="font-weight-bold">Title: <span className="d-inline-block ml-3"> {this.state.cert.certificates[0].certid}</span></h5>
+            <h5 className="font-weight-bold">Title: <span className="d-inline-block ml-3"> {this.state.cert.certificates[0].title}</span></h5>
 
             <div className="mt-5 d-md-flex">
 
@@ -269,7 +270,7 @@ class Fitment extends React.Component{
                                                 
             </div>
 
-            <p className="pt-3 small pl-3">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+            <p className="pt-3 small pl-2">The universal remote controller can generate an arbitrary command signal to control electronic devices on NEC or RC5 standards. the controller is connected to the cloud over a WiFI based IP interface. The controller can be configured for a specific device using  cloud application hosted on GCP and provides a NodeJS/AngularJS based user interfaces. The controller has been tested with  10 devices from various consumer electronic vendors. </p>
             
 
 
@@ -314,6 +315,44 @@ class Fitment extends React.Component{
             </ul>
             
 
+            <div className="d-md-flex flex-wrap toolsIconHolder">
+
+                <div>
+                    <h5>Softwares Used</h5>
+
+                    <ul className="d-flex pl-0">
+                        {this.state.cert.certificates[0].softwares.map((e,i)=>{
+                            return(
+                                <li className="m-1" key={i}><img src={e.url} alt="#" width="20"/> </li>
+                            )
+                        })}
+                    </ul>
+                </div>
+
+                <div>
+                    <h5>Hardware Used</h5>
+
+                    <ul className="d-flex pl-0">
+                        {this.state.cert.certificates[0].hardware.map((e,i)=>{
+                            return(
+                                <li className="m-1" key={i}><img src={e.url} alt="#" width="20"/> </li>
+                            )
+                        })}
+                    </ul>
+                </div>
+                
+
+            </div>
+            
+
+        </div>
+
+
+        <div className="col-md-6 projectDemoVdoHolder">
+
+            <h5>Demo</h5>
+
+            <iframe width="" height="" src="https://www.youtube.com/embed/LlhmzVL5bm8" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </div>
 
     </div>

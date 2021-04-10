@@ -123,6 +123,12 @@ const KickStart = () => {
 
                     </ul>
 
+                    <div className="pt-3">
+
+                        <a href="/fitment" className="btn position-relative btn-success d-block ml-4">Fitment</a>
+
+                    </div>
+
                 </div>
 
             </div>

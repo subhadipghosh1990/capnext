@@ -365,7 +365,6 @@ footer a {
 
 .projectImg{
     min-height: 200px;
-    background: #C4C4C4;
 }
 
 .projectActions{
@@ -374,7 +373,7 @@ footer a {
 
 .projectActions > div a {
     font-size: 10px;
-    padding: 0px 15px;
+    padding: 0px 4px;
     line-height: normal;
     margin-top: 5px;
     color: #000;
@@ -401,6 +400,21 @@ footer a {
 .accListStar {
     margin-left: 20px;
     min-width: 95px;
+}
+
+.projectDemoVdoHolder iframe {
+    width: 100%;
+    margin-top: 10px;
+    height: 300px;
+}
+
+.toolsIconHolder >div{
+    width: 50%;
+}
+
+.toolsIconHolder >div h5{
+    font-size: 16px;
+    font-weight: 500;
 }
 
 @media(max-width:1199px) {
@@ -653,4 +667,18 @@ footer a {
 .modalList ul li {
     position: relative;
     list-style-type: disc;
+}
+
+.certiUpload label {
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.certiUpload .form-group {
+    margin-bottom: 6px;
+}
+
+.certificateForm{
+    min-height: 100vh;
 }

@@ -42,6 +42,10 @@ const Header = (props) => {
                                     <Link to="services" onClick={props.closeNav} className="text-uppercase d-block" smooth={true} offset={-70}>services</Link>
                                 </li>
 
+                                <li>
+                                <a href="admin" className="text-uppercase d-block">Admin</a>                             
+                                </li>
+
                             </ul>
                         </nav>
 

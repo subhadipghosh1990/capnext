@@ -1,6 +1,8 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../assets/css/style.css';
+
+import axios from "axios";
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
@@ -13,11 +15,128 @@ import Header from '../components/Header';
 // import Services from '../components/Services';
 
 import Home from './Home';
+import Admin from './Admin';
 import Fitment from '../components/Fitment';
 
 import Footer from '../components/Footer';
 
 function App() {
+
+
+  var report = {
+    name:"sd",
+    cert:{
+        "studHash": "XAVJXT",
+        "roleScore": [{"P1":1.0},{"P2":1.0},{"P3":1.0},{"P4":1.0},{"P5":1.0},{"P6":1.0}],
+        "roleNote": "The candidate has demonstrated ..",
+        "techScore": [{"P1":1.0},{"P2":1.0},{"P3":1.0},{"P4":1.0},{"P5":1.0},{"P6":1.0}],
+        "techNote": "The candidate has demonstrated ..",
+        "certificates":[
+            {	"certid" : "WWSADX", 
+                "certpath": "path",
+                "title" : "title sting",
+                "novelty": "string",
+                "maxstars": 5,
+                "complexity":3, 
+                "manualurl":"path",
+                "acceptance" : [
+                    {"criteria": "criteria string",	"status": "Pass","quality": 3 },
+                    {"criteria": "criteria string",	"status": "Pass","quality": 5 },
+                    {"criteria": "criteria string",	"status": "Fail","quality": 2 },
+                    {"criteria": "criteria string",	"status": "Pass","quality": 4 },
+                    {"criteria": "criteria string",	"status": "Fail","quality": 1 }
+                ],
+                "metrics": [
+                    {"scope": "timeline","units":"weeks", "estimate": 12,  "actual": 15, "rating":2	}, 
+                    {"scope": "efforts","units":"manhours", "estimate": 250,  "actual": 275, "rating":3	} 
+                ],
+                "softwares":[
+                    {"name": "soft1", "type":"software","competency":3,"url":"https://cdn.sketchbubble.com/pub/media/catalog/product/optimized1/6/9/69fd3f3fa4b53119324dc79e3a2813caff651389412559bfb4d639b79a0d9f39/software-icons-slide4.png"}, 
+                    {"name": "soft2", "type":"software","competency":2,"url":"https://cdn.sketchbubble.com/pub/media/catalog/product/optimized1/6/9/69fd3f3fa4b53119324dc79e3a2813caff651389412559bfb4d639b79a0d9f39/software-icons-slide4.png"},
+                    {"name": "soft3", "type":"software","competency":4,"url":"https://cdn.sketchbubble.com/pub/media/catalog/product/optimized1/6/9/69fd3f3fa4b53119324dc79e3a2813caff651389412559bfb4d639b79a0d9f39/software-icons-slide4.png"},
+                    {"name": "soft4", "type":"software","competency":1,"url":"https://cdn.sketchbubble.com/pub/media/catalog/product/optimized1/6/9/69fd3f3fa4b53119324dc79e3a2813caff651389412559bfb4d639b79a0d9f39/software-icons-slide4.png"} 
+                ],
+                "hardware":[
+                    {"name": "tool1", "type":"MCU","competency":3,"url":"https://cdn.sketchbubble.com/pub/media/catalog/product/optimized1/6/9/69fd3f3fa4b53119324dc79e3a2813caff651389412559bfb4d639b79a0d9f39/software-icons-slide4.png"}, 
+                    {"name": "tool2", "type":"sensor","competency":2,"url":"https://cdn.sketchbubble.com/pub/media/catalog/product/optimized1/6/9/69fd3f3fa4b53119324dc79e3a2813caff651389412559bfb4d639b79a0d9f39/software-icons-slide4.png"} 
+                ],
+                "interfaces":[
+                    {"name": "if1", "url":"link","competency":3}, 
+                    {"name": "if2", "url":"link","competency":2} 
+                ],
+                "rfp":[
+                    {"name": "245", "url":"link","competency":3}, 
+                    {"name": "132", "url":"link","competency":2} 
+                ],
+                "demo":[
+                    {"url":"link","comments":"comments" }
+                ],
+                "priorart":[
+                    {"url":"link","comments":"comments" },
+                    {"url":"link","comments":"comments" }
+                ] 
+            }]
+    },
+    data:[
+        {
+          data: {
+            p1: 0.45,
+            p2: .32,
+            p3: 0.3,
+            p4: 0.1,
+            p5: 0.9,
+            p6: 0.3
+          },
+          meta: { color: 'blue' }
+        }
+    ],
+    data2:[{
+        data: {
+            p1: 0.7,
+            p2: .8,
+            p3: 0.9,
+            p4: 0.67,
+            p5: 0.67,
+            p6: 0.8
+          },
+        meta: { color: 'red' }
+    }],
+    captions:{
+        p1:"p1",
+        p2:"p2",
+        p3:"p3",
+        p4:"p4",
+        p5:"p5",
+        p6:"p6"
+   },
+   complexity:[]
+
+
+};
+
+  useEffect(()=>{
+
+    console.log(JSON.stringify(report))
+
+    axios.get("http://localhost:8000/")
+    .then(e => {
+      console.log(e.data);
+    })
+
+
+    var test11 = new FormData();
+
+    // test11.append("name", "Subhadip");
+    // test11.append("job", "Dev");
+
+    test11.append("report", JSON.stringify(report));
+
+    // axios.post("http://localhost:8000/test", test11)
+    // .then(e => {
+    //   console.log(e.data);
+    // })
+
+  }, [])
 
 
   //header modal
@@ -105,7 +224,7 @@ function App() {
               <Route path='/fitment'>
                 <Fitment/>
               </Route>
-              {/* <Route path='/about' component={About} /> */}
+              <Route path='/admin' component={Admin} />
           </Switch>
 
       </Router>
